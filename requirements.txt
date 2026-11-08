@@ -1,0 +1,9 @@
+flask==3.0.3
+flask-cors==4.0.1
+gunicorn==22.0.0
+openai>=1.40,<3
+huggingface_hub>=0.25
+pymongo>=4.8
+requests>=2.32
+python-dotenv>=1.0
+pillow>=10.3

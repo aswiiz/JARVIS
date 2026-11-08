@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: jarvis-backend
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --workers 1 --threads 4 --timeout 300 --bind 0.0.0.0:$PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: MISTRAL_API_KEY
+        sync: false
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: HUGGINGFACE_ACCESS_TOKEN
+        sync: false
+      - key: MONGODB_URI
+        sync: false
+      - key: APP_API_TOKEN
+        sync: false
+      - key: MONGODB_DB
+        value: jarvis
+      - key: LLM_PROVIDER_ORDER
+        value: groq,gemini,mistral,openrouter,nvidia,llm7,openai,custom
+      - key: KEEPALIVE_ENABLED
+        value: "true"
+      - key: PING_INTERVAL_SECONDS
+        value: "240"
